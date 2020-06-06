@@ -20,7 +20,10 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Deliver') {
+        stage('Deliver for development') {
+            when {
+                branch 'development'
+            }
             steps {
                 sh 'chmod +x ./jenkins/scripts/deliver.sh'
                 sh './jenkins/scripts/deliver.sh'
